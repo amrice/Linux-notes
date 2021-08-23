@@ -101,3 +101,44 @@ userdel -r "要删除的用户"
 
 ### 二、shadow文件讲解
 
+```shell
+hx:$6$9N.x557DyMC,,,,,2Yxb2Az0.8y1:18858:0:99999:7:::
+```
+
+用户:密码（rehl5用MD5/RHEL6用sha512加密）密码最近更改日期:密码不能更改的天数（距离最近一次更改密码的时间不能小于这个值，0则表示随便修改）:密码过期时间：密码到期钱7天警告：宽限天数（密码过期了多少天后还能更改密码）:账号过期时间:保留字段
+
+#### 密码部分
+
+```
+$6$9N.x557DyMCuQxsE$YJr9CzFaUtF/mtLwbaMAgplLf5cV5utmLLg6Rw3Fiw2LLfm2xwdCrXaZkYozPs6pKfQq6EVCpF2Yxb2Az0.8y1
+```
+
+密码分为三个部分，第一部分表示使用哪种哈希算法，第二部分用于加密哈希的salt，第三部分是已经加密的哈希
+
+$1 表示MD5
+
+$6 表示SHA-512
+
+$5 表示SHA-256
+
+#### 通过man命令查看文档帮助
+
+```shell
+man 5 shadow
+man 5 shadow
+man 5 group
+man 3 crypt
+```
+
+#### 给用户添加密码
+
+```
+passwd “用户”
+```
+
+交互式的命令则是
+
+```
+echo “密码” | passwd --stding "用户"
+```
+
